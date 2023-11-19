@@ -2,6 +2,7 @@
 
 import {usePersonStore} from "@/store/store";
 import {useState} from "react";
+import Link from "next/link";
 
 export default function AddPage(){
 
@@ -22,6 +23,8 @@ export default function AddPage(){
 
     return(
         <section dir={'rtl'} className={'flex items-center flex-col justify-center w-full mt-24 gap-10'}>
+
+            <Link href={'/'} className={'border-black border-2 w-1/3 text-center rounded-full'}>חזרה</Link>
 
             <form dir={'rtl'} action="" className={'flex flex-col justify-center items-center'}>
                 <label htmlFor="">שם מלא</label>

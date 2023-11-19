@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 
-type Person = {
+export type Person = {
     id?: number;
     name: string;
     getMoney?: boolean;
@@ -23,4 +23,4 @@ const usePersonStore = create<PersonState>((set) => ({
     },
 }));
 
-export {usePersonStore}
+export {usePersonStore }

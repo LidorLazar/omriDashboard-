@@ -15,7 +15,7 @@ export default function AddPage(){
 
     function handlerPerson (e:any){
         e.preventDefault()
-        addPerson({name:name, phone:tel, cash:cash, time:time, getMoney:false})
+        addPerson({name:name, phone:tel, cash:cash, time:time, getMoney:false, id:1})
         console.log(peoples)
     }
 

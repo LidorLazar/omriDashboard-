@@ -11,6 +11,18 @@ export default function Home() {
     const resetBalance = usePersonStore(state => state.resetBalance)
     const resetPerson = usePersonStore(state => state.resetPerson)
 
+    const sortedPeople = [...peoples].sort((a, b) => {
+        const timeA = a.time.split(':').map(Number);
+        const timeB = b.time.split(':').map(Number);
+
+        // Compare hours
+        if (timeA[0] !== timeB[0]) {
+            return timeA[0] - timeB[0];
+        }
+
+        // If hours are the same, compare minutes
+        return timeA[1] - timeB[1];
+    });
 
     return (
 
@@ -42,7 +54,7 @@ export default function Home() {
                     <p className={'w-1/5'}>סכום</p>
                     <p className={'w-1/5'}>נאסף</p>
                 </div>
-                {peoples.length > 0 ? peoples.map(item => <ListTable key={item.id} cash={item.cash} id={item.id}
+                {sortedPeople.length > 0 ? sortedPeople.map(item => <ListTable key={item.id} cash={item.cash} id={item.id}
                                                                      name={item.name}
                                                                      time={item.time} phone={item.phone}
                                                                      getMoney={item.getMoney}/>) : <p>אין אנשים </p>}

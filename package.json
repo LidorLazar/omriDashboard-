@@ -6,8 +6,8 @@
     "dev": "next dev",
     "build": "npx prisma generate && npm run build",
     "start": "next start",
-    "lint": "next lint",
-    "generate":"prisma generate --schema=./omriDashboard-/prisma/schema.prisma"
+    "lint": "next lint"
+
   },
   "dependencies": {
     "@prisma/client": "^5.6.0",

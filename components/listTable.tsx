@@ -14,14 +14,14 @@ export default function ListTable({id, name, phone, time, getMoney, cash}: Perso
                 <p className={'w-1/5'}> {name}</p><p className={'w-1/5'}><a
                 href={`https://wa.me/+972${phone}`}> {phone}</a></p><p className={'w-1/5'}>{time}</p><p
                 className={'w-1/5'}>{cash}</p>
-                {getMoney === true ? <div className={'w-1/5 '}>
+                {getMoney === true ? <div className={'w-1/5 h-full flex items-center justify-center'}>
                         <input type="checkbox" className={'w-full'} checked={true}
                                onChange={() => chaneMoney(id as number, false)}
                                onClick={() => lowerBalance(cash, balance)}/>
                     </div>
                     :
                     <div className={'w-1/5'}>
-                        <input type="checkbox" className={'w-full'} checked={false}
+                        <input type="checkbox" className={'w-1/5 h-full flex items-center justify-center'} checked={false}
                                onChange={() => {
                                    +chaneMoney(id as number, true)
                                }} onClick={() => increaseBalance(cash, balance)}/>

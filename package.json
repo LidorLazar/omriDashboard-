@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "generate": "prisma generate --schema=./omriDashboard-/prisma/schema.prisma",
     "dev": "next dev",
     "build": "npx prisma generate && npm run build",
     "start": "next start",

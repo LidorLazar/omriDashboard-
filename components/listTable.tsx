@@ -17,9 +17,12 @@ export default function ListTable({id, name, phone, time, getMoney, cash}: Perso
                     <input type="checkbox" className={'w-1/5'} checked={true}
                            onChange={() => chaneMoney(id as number, false)} onClick={()=>lowerBalance(cash, balance)}/> :
                     <input type="checkbox" className={'w-1/5'} checked={false}
-                           onChange={() => chaneMoney(id as number, true)} onClick={()=>increaseBalance(cash, balance)}/>}
+                           onChange={() => {
++                               chaneMoney(id as number, true)
+                           }} onClick={()=>increaseBalance(cash, balance)}/>}
 
             </div>
+
         </section>
     );
 }

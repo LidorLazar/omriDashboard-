@@ -1,8 +1,8 @@
 "use client"
 import Link from "next/link";
-import {usePersonStore} from "@/store/store";
+import {Person, usePersonStore} from "@/store/store";
 import ListTable from "@/components/listTable";
-
+import {useEffect} from "react";
 
 export default function Home() {
 
@@ -10,26 +10,29 @@ export default function Home() {
     const balance = usePersonStore(state => state.balance)
     const resetBalance = usePersonStore(state => state.resetBalance)
     const resetPerson = usePersonStore(state => state.resetPerson)
+    const fetchPeoples = usePersonStore(state => state.fetchPeoples)
 
-    const sortedPeople = [...peoples].sort((a, b) => {
+
+    const sortedPeople: Person[] = [...peoples].sort((a, b) => {
         const timeA = a.time.split(':').map(Number);
         const timeB = b.time.split(':').map(Number);
 
-        // Compare hours
         if (timeA[0] !== timeB[0]) {
             return timeA[0] - timeB[0];
         }
 
-        // If hours are the same, compare minutes
         return timeA[1] - timeB[1];
     });
+
+    useEffect(() => {
+        fetchPeoples()
+    },)
 
     return (
 
         <section dir={'rtl'} className={'flex w-full mt-24 flex-col gap-10'}>
-            <button onClick={()=> {
-                resetBalance(0), resetPerson()
-            }}>איפוס יום </button>
+            <button onClick={() => {resetBalance(); resetPerson()}}>איפוס יום
+            </button>
             <article className={'flex w-full justify-evenly font-bold text-center text-2xl'}>
                 <div>
                     <p>הוצאות</p>
@@ -54,10 +57,12 @@ export default function Home() {
                     <p className={'w-1/5'}>סכום</p>
                     <p className={'w-1/5'}>נאסף</p>
                 </div>
-                {sortedPeople.length > 0 ? sortedPeople.map(item => <ListTable key={item.id} cash={item.cash} id={item.id}
-                                                                     name={item.name}
-                                                                     time={item.time} phone={item.phone}
-                                                                     getMoney={item.getMoney}/>) : <p>אין אנשים </p>}
+                {sortedPeople.length > 0 ? sortedPeople.map(item => <ListTable key={item.id} cash={item.cash}
+                                                                               id={item.id}
+                                                                               name={item.name}
+                                                                               time={item.time} phone={item.phone}
+                                                                               getMoney={item.getMoney}/>) :
+                    <p>אין אנשים </p>}
             </article>
         </section>
     )

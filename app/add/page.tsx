@@ -1,15 +1,16 @@
 'use client'
 
-import {Person, usePersonStore} from "@/store/store";
-import {useState} from "react";
+import { Person } from "@/store/store";
+import { useState } from "react";
 import Link from "next/link";
+import axios from "axios";
+
 
 export default function AddPage() {
 
-    const {addPerson} = usePersonStore()
 
     const [formData, setFormData] = useState<Person>({
-        id: 1,
+        id:5,
         name: '',
         phone: '',
         time: '',
@@ -18,8 +19,8 @@ export default function AddPage() {
     });
     const [message, setMessage] = useState(false)
 
-    function handlerPerson() {
-        addPerson(formData)
+    async function  handlerPerson() {
+        axios.post('/api/data/', formData).then((res) => console.log(res.data))
         setMessage(true)
 
     }

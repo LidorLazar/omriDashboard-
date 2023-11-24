@@ -11,15 +11,22 @@ export default function ListTable({id, name, phone, time, getMoney, cash}: Perso
     return (
         <section dir={'rtl'} className={`flex w-full m-0 p-0`}>
             <div className={`flex w-full ${getMoney === true && 'bg-green-500'}`}>
-                <p className={'w-1/5'}> {name}</p><p className={'w-1/5'}><a href={`https://wa.me/+972${phone}`}> {phone}</a></p><p className={'w-1/5'}>{time}</p><p
+                <p className={'w-1/5'}> {name}</p><p className={'w-1/5'}><a
+                href={`https://wa.me/+972${phone}`}> {phone}</a></p><p className={'w-1/5'}>{time}</p><p
                 className={'w-1/5'}>{cash}</p>
-                {getMoney === true ?
-                    <input type="checkbox" className={'w-1/5'} checked={true}
-                           onChange={() => chaneMoney(id as number, false)} onClick={()=>lowerBalance(cash, balance)}/> :
-                    <input type="checkbox" className={'w-1/5'} checked={false}
-                           onChange={() => {
-+                               chaneMoney(id as number, true)
-                           }} onClick={()=>increaseBalance(cash, balance)}/>}
+                {getMoney === true ? <div className={'w-1/5 '}>
+                        <input type="checkbox" className={'w-full'} checked={true}
+                               onChange={() => chaneMoney(id as number, false)}
+                               onClick={() => lowerBalance(cash, balance)}/>
+                    </div>
+                    :
+                    <div className={'w-1/5'}>
+                        <input type="checkbox" className={'w-full'} checked={false}
+                               onChange={() => {
+                                   +chaneMoney(id as number, true)
+                               }} onClick={() => increaseBalance(cash, balance)}/>
+                    </div>
+}
 
             </div>
 

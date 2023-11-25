@@ -11,6 +11,7 @@ export default function Home() {
     const resetBalance = usePersonStore(state => state.resetBalance)
     const resetPerson = usePersonStore(state => state.resetPerson)
     const fetchPeoples = usePersonStore(state => state.fetchPeoples)
+    const fetchBalance = usePersonStore(state => state.fetchBalance)
 
 
     const sortedPeople: Person[] = [...peoples].sort((a, b) => {
@@ -26,10 +27,11 @@ export default function Home() {
 
     useEffect(() => {
         fetchPeoples()
-    },)
+        fetchBalance()
+        fetchBalance()
+    },[peoples])
 
     return (
-
         <section dir={'rtl'} className={'flex w-full mt-24 flex-col gap-10'}>
             <button onClick={() => {resetBalance(); resetPerson()}}>איפוס יום
             </button>

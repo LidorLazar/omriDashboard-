@@ -1,12 +1,19 @@
 import {Person, usePersonStore} from "@/store/store";
+import axios from "axios";
 
 export default function ListTable({id, name, phone, time, getMoney, cash}: Person) {
 
     const chaneMoney = usePersonStore(state => state.changeGetMoney);
-    const balance = usePersonStore(state => state.balance);
-    const increaseBalance = usePersonStore(state => state.increaseBalance);
-    const lowerBalance = usePersonStore(state => state.lowerBalance);
+    let balance = usePersonStore(state => state.balance);
 
+    function handlerChangeGetMoney(param: boolean) {
+        axios.put(`api/data/${id}`, {body: param}).then((res) => res.data)
+    }
+
+    function handlerUpdateBalance(param: number) {
+        axios.put(`api/balance`, {body: param}).then((res) => console.log(res.data))
+
+    }
 
     return (
         <section dir={'rtl'} className={`flex w-full m-0 p-0`}>
@@ -17,17 +24,23 @@ export default function ListTable({id, name, phone, time, getMoney, cash}: Perso
                 {getMoney === true ? <div className={'w-1/5 h-full flex items-center justify-center'}>
                         <input type="checkbox" className={'w-full  h-full flex items-center justify-center'} checked={true}
                                onChange={() => chaneMoney(id as number, false)}
-                               onClick={() => lowerBalance(cash, balance)}/>
+                               onClick={() => {
+                                   handlerChangeGetMoney(false);
+                                   handlerUpdateBalance(balance - cash)
+                               }}/>
                     </div>
                     :
                     <div className={'w-1/5 h-full flex items-center justify-center'}>
-                        <input type="checkbox" className={'w-full h-full flex items-center justify-center'} checked={false}
+                        <input type="checkbox" className={'w-full h-full flex items-center justify-center'}
+                               checked={false}
                                onChange={() => {
-                                   +chaneMoney(id as number, true)
-                               }} onClick={() => increaseBalance(cash, balance)}/>
+                                   chaneMoney(id as number, true)
+                               }} onClick={() => {
+                            handlerChangeGetMoney(true);
+                            handlerUpdateBalance(balance + cash)
+                        }}/>
                     </div>
-}
-
+                }
             </div>
 
         </section>

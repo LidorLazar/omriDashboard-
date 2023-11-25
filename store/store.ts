@@ -1,4 +1,6 @@
 import {create} from 'zustand';
+import axios from "axios";
+
 
 
 export type Person = {
@@ -21,6 +23,7 @@ interface PersonState {
     lowerBalance: (by:number, state:any) => void,
     resetPerson: () => void,
     fetchPeoples: () => void
+    fetchBalance: () => void
 
 }
 
@@ -32,10 +35,7 @@ const usePersonStore = create<PersonState>((set) => ({
     },
 
     changeGetMoney: async (id: number, getMoney: boolean) => {
-        const res = await fetch(`api/data/${id}`)
-        const response = res.json()
-
-        console.log(response)
+        await axios.get(`api/data/${id}`)
 
         set((state) => ({
             peoples: state.peoples.map((person) =>
@@ -45,17 +45,23 @@ const usePersonStore = create<PersonState>((set) => ({
     },
     resetBalance: () => set({balance: 0}),
     resetPerson: async () => {
-        await fetch('api/data', {method:'DELETE'});
+        await axios.delete('api/data');
     },
-    increaseBalance: (by: number, state: number) => set({balance: state + by}),
-    lowerBalance: (by: number, state: number) => set({balance: state - by}),
+    increaseBalance: (by: number, state: any) => set({balance: Number(state.balance) + by}),
+    lowerBalance: (by: number, state: any) => set({balance:  Number(state.balance) - by}),
     fetchPeoples: async () => {
-        const res = await fetch('api/data', {method:'GET'});
-        const response = await res.json()
+        const res = await axios.get('api/data');
+        const response = await res.data
         set({peoples:[...response]})
+    },
+    fetchBalance: async () =>{
+        const res = await  axios.get('api/balance')
+        const response = res.data
+        response.map((item:any) => {
+            set({balance:item.balance})
+        })
+
     }
-
-
 }));
 
 export {usePersonStore}

@@ -18,3 +18,8 @@ model Person {
   time     String
   cash     Int
 }
+
+model Finance {
+  id      Int @id @default(autoincrement())
+  balance Int
+}

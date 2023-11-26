@@ -28,4 +28,18 @@ export const GET = async () => {
 export const DELETE = async () => {
     const res = await db.person.deleteMany()
     return NextResponse.json(res);
+
+}
+
+
+export const PUT = async () => {
+    const res = await db.finance.update({
+        where: {
+            id: 1
+        },data:{
+            balance:0
+        }
+    })
+    return NextResponse.json(res);
+
 }

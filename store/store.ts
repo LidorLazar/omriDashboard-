@@ -19,8 +19,6 @@ interface PersonState {
     addPerson: (newPerson: Person) => void
     changeGetMoney: (id: number, getMoney: boolean) => void;
     resetBalance: () => void
-    increaseBalance: (by: number, state: any) => void
-    lowerBalance: (by:number, state:any) => void,
     resetPerson: () => void,
     fetchPeoples: () => void
     fetchBalance: () => void
@@ -43,12 +41,10 @@ const usePersonStore = create<PersonState>((set) => ({
             ),
         }));
     },
-    resetBalance: () => set({balance: 0}),
+    resetBalance: async () => {await axios.put('api/data')},
     resetPerson: async () => {
         await axios.delete('api/data');
     },
-    increaseBalance: (by: number, state: any) => set({balance: Number(state.balance) + by}),
-    lowerBalance: (by: number, state: any) => set({balance:  Number(state.balance) - by}),
     fetchPeoples: async () => {
         const res = await axios.get('api/data');
         const response = await res.data

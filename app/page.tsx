@@ -29,7 +29,7 @@ export default function Home() {
         fetchPeoples()
         fetchBalance()
         fetchBalance()
-    },[peoples])
+    },[!peoples])
 
     return (
         <section dir={'rtl'} className={'flex w-full mt-24 flex-col gap-10'}>

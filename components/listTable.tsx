@@ -1,5 +1,6 @@
 import {Person, usePersonStore} from "@/store/store";
 import axios from "axios";
+import Link from "next/link";
 
 export default function ListTable({id, name, phone, time, getMoney, cash}: Person) {
 
@@ -18,7 +19,7 @@ export default function ListTable({id, name, phone, time, getMoney, cash}: Perso
     return (
         <section dir={'rtl'} className={`flex w-full m-0 p-0`}>
             <div className={`flex w-full ${getMoney === true && 'bg-green-500'}`}>
-                <p className={'w-1/5'}> {name}</p><p className={'w-1/5'}><a
+                <p className={'w-1/5'}><Link href={`/add/${id}`}>{name}</Link> </p><p className={'w-1/5'}><a
                 href={`https://wa.me/+972${phone}`}> {phone}</a></p><p className={'w-1/5'}>{time}</p><p
                 className={'w-1/5'}>{cash}</p>
                 {getMoney === true ? <div className={'w-1/5 h-full flex items-center justify-center'}>

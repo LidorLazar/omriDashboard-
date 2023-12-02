@@ -24,7 +24,7 @@ export const GET = async () => {
     const date = new Date().toLocaleDateString()
     const res = await db.delivery.findMany({
         where:{
-            created: date
+            created: "2.12.2023"
         }
     })
     return NextResponse.json(res);

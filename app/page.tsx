@@ -6,6 +6,8 @@ import {useEffect} from "react";
 
 export default function Home() {
 
+
+
     const peoples = usePersonStore(state => state.peoples)
     const balance = usePersonStore(state => state.balance)
     const resetBalance = usePersonStore(state => state.resetBalance)

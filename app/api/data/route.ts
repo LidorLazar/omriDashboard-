@@ -1,6 +1,7 @@
 import {NextResponse} from "next/server";
 import {Person} from "@/store/store";
 import {db} from "@/lib/db";
+import {format} from "date-fns";
 
 
 export const POST = async (request: Request) => {
@@ -21,10 +22,11 @@ export const POST = async (request: Request) => {
 
 
 export const GET = async () => {
-    const date = new Date().toLocaleDateString()
+    const {format} = require('date-fns');
+    const today =format(new Date(),'dd.MM.yyyy');
     const res = await db.delivery.findMany({
         where:{
-            created: "2.12.2023"
+            created: today
         }
     })
     return NextResponse.json(res);

@@ -6,6 +6,8 @@ import {useEffect} from "react";
 
 export default function Home() {
 
+
+
     const peoples = usePersonStore(state => state.peoples)
     const balance = usePersonStore(state => state.balance)
     const resetBalance = usePersonStore(state => state.resetBalance)
@@ -29,6 +31,7 @@ export default function Home() {
         fetchBalance()
         fetchBalance()
     },[])
+
 
     return (
         <section dir={'rtl'} className={'flex w-full mt-24 flex-col gap-10'}>

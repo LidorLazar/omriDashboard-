@@ -2,11 +2,14 @@ import { PrismaClient } from '@prisma/client';
 
 declare global {
     //@ts-ignore
-    const prisma = new PrismaClient()
+    const prisma = new PrismaClient({
+        log: ['query']
+    })
 
 }
 
 let prisma: PrismaClient;
+
 
 if (process.env.NODE_ENV === 'production') {
     prisma = new PrismaClient();

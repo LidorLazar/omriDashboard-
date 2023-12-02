@@ -10,6 +10,7 @@ export type Person = {
     time: string;
     phone: string;
     cash: number;
+    created: string
 }
 
 
@@ -19,7 +20,6 @@ interface PersonState {
     addPerson: (newPerson: Person) => void
     changeGetMoney: (id: number, getMoney: boolean) => void;
     resetBalance: () => void
-    resetPerson: () => void,
     fetchPeoples: () => void
     fetchBalance: () => void
 

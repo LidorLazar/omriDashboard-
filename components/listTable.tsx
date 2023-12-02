@@ -2,7 +2,7 @@ import {Person, usePersonStore} from "@/store/store";
 import axios from "axios";
 import Link from "next/link";
 
-export default function ListTable({id, name, phone, time, getMoney, cash}: Person) {
+export default function ListTable({id, name, phone, time, getMoney, cash, created}: Person) {
 
     const chaneMoney = usePersonStore(state => state.changeGetMoney);
     let balance = usePersonStore(state => state.balance);

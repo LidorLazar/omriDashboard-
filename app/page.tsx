@@ -9,7 +9,6 @@ export default function Home() {
     const peoples = usePersonStore(state => state.peoples)
     const balance = usePersonStore(state => state.balance)
     const resetBalance = usePersonStore(state => state.resetBalance)
-    const resetPerson = usePersonStore(state => state.resetPerson)
     const fetchPeoples = usePersonStore(state => state.fetchPeoples)
     const fetchBalance = usePersonStore(state => state.fetchBalance)
 
@@ -29,11 +28,11 @@ export default function Home() {
         fetchPeoples()
         fetchBalance()
         fetchBalance()
-    },[peoples])
+    },[])
 
     return (
         <section dir={'rtl'} className={'flex w-full mt-24 flex-col gap-10'}>
-            <button onClick={() => {resetBalance(); resetPerson()}}>איפוס יום
+            <button onClick={() => resetBalance()}>איפוס יום
             </button>
             <article className={'flex w-full justify-evenly font-bold text-center text-2xl'}>
                 <div>
@@ -63,7 +62,7 @@ export default function Home() {
                                                                                id={item.id}
                                                                                name={item.name}
                                                                                time={item.time} phone={item.phone}
-                                                                               getMoney={item.getMoney}/>) :
+                                                                               getMoney={item.getMoney} created={item.created}/>) :
                     <p>אין אנשים </p>}
             </article>
         </section>

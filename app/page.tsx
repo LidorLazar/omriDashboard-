@@ -30,6 +30,7 @@ export default function Home() {
         fetchBalance()
     },[])
 
+
     return (
         <section dir={'rtl'} className={'flex w-full mt-24 flex-col gap-10'}>
             <button onClick={() => resetBalance()}>איפוס יום

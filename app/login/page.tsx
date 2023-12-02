@@ -8,8 +8,6 @@ import { RiLockPasswordFill } from "react-icons/ri";
 export default function Login(){
 
 
-
-
     return(
         <section dir={'rtl'} className={'flex flex-col w-full h-screen items-center justify-center'}>
             <article className={'h-2/4 w-full items-center justify-center flex flex-col gap-2 '}>

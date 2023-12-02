@@ -3,7 +3,7 @@ import {db} from "@/lib/db";
 
 export const DELETE = async (req: NextRequest) => {
     const id = req.url.split('/api/edit/')[1]
-    const res = await db.person.delete(
+    const res = await db.delivery.delete(
         {
             where:{
                 id:Number(id)
@@ -20,7 +20,7 @@ export const PUT = async (req:NextRequest) => {
 
     const id = req.url.split('/api/edit/')[1]
     const r:any = await req.json()
-    const res = await db.person.update({
+    const res = await db.delivery.update({
         where: {
             id: Number(id)
         },

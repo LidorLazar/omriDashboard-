@@ -6,12 +6,13 @@ import {db} from "@/lib/db";
 export const POST = async (request: Request) => {
     const body: Person = await request.json();
 
-    const newPerson = await db.person.create({
+    const newPerson = await db.delivery.create({
         data: {
             name: body.name,
             phone: body.phone,
             time: body.time,
             cash: body.cash,
+            created: body.created
 
         }
     });
@@ -20,15 +21,13 @@ export const POST = async (request: Request) => {
 
 
 export const GET = async () => {
-    const res = await db.person.findMany()
+    const date = new Date().toLocaleDateString()
+    const res = await db.delivery.findMany({
+        where:{
+            created: date
+        }
+    })
     return NextResponse.json(res);
-}
-
-
-export const DELETE = async () => {
-    const res = await db.person.deleteMany()
-    return NextResponse.json(res);
-
 }
 
 

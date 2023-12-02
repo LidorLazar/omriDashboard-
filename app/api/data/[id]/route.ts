@@ -5,7 +5,7 @@ export const PUT = async (req:NextRequest) => {
 
     const id = req.url.split('/api/data/')[1]
     const r:any = await req.json()
-    const res = await db.person.update({
+    const res = await db.delivery.update({
         where: {
             id: Number(id)
         },
@@ -21,7 +21,7 @@ export const GET = async (req: NextRequest) => {
 
     const id = req.url.split('/api/data/')[1]
 
-    const res = await db.person.findUnique(
+    const res = await db.delivery.findUnique(
         {
             where:{
                 id:Number(id)

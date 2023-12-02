@@ -8,6 +8,7 @@ import axios from "axios";
 
 export default function AddPage() {
 
+    const date = new Date().toLocaleDateString()
 
     const [formData, setFormData] = useState<Person>({
         id:5,
@@ -15,7 +16,9 @@ export default function AddPage() {
         phone: '',
         time: '',
         cash: 0,
-        getMoney: false
+        getMoney: false,
+        created: date
+
     });
     const [message, setMessage] = useState(false)
 

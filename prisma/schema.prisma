@@ -10,16 +10,30 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Person {
+model Delivery {
   id       Int     @id @default(autoincrement())
   name     String
   phone    String?
   getMoney Boolean @default(false)
   time     String
   cash     Int
+  created  String
 }
 
 model Finance {
   id      Int @id @default(autoincrement())
   balance Int
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  username String
+  password String
+  role     Role   @default(USER)
+}
+
+enum Role {
+  ADMIN
+  MANAGER
+  USER
 }

@@ -8,7 +8,10 @@ import axios from "axios";
 
 export default function AddPage() {
 
-    const date = new Date().toLocaleDateString()
+    const {format} = require('date-fns');
+    const today =format(new Date(),'dd.MM.yyyy');
+    console.log(today);
+
 
     const [formData, setFormData] = useState<Person>({
         id:5,
@@ -17,7 +20,7 @@ export default function AddPage() {
         time: '',
         cash: 0,
         getMoney: false,
-        created: date
+        created: today
 
     });
     const [message, setMessage] = useState(false)

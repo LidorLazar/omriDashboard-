@@ -8,12 +8,13 @@ import Link from "next/link";
 export default function History() {
 
     const [nameData, setNameData] = useState('');
-    const fetchAllPeoples = usePersonStore(state => state.fetchAllPeoples)
+    const fetchPeoples = usePersonStore(state => state.fetchPeoples)
     const peoples = usePersonStore(state => state.peoples)
     const filterList: Person[] = [...peoples].filter((item) => item.name === nameData)
 
     useEffect(() => {
-        fetchAllPeoples()
+        fetchPeoples()
+        console.log(peoples)
     }, [])
 
     return (

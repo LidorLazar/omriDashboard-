@@ -1,5 +1,5 @@
 import Image from "next/image";
-// import deliveryImage from '../../public/deliver.png'
+import deliveryImage from '../../public/deliver.png'
 import { FaUser } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 
@@ -31,7 +31,7 @@ export default function Login(){
 
             </article>
             <article className={'w-full h-auto flex absolute bottom-0 justify-end '}>
-                {/*<Image src={deliveryImage} alt={'deliveryImage'} title={'deliveryImage'} className={'animate-wiggle'}/>*/}
+                <Image src={deliveryImage} alt={'deliveryImage'} title={'deliveryImage'} className={'animate-wiggle'}/>
             </article>
         </section>
     )

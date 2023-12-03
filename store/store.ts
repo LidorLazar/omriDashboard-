@@ -2,7 +2,6 @@ import {create} from 'zustand';
 import axios from "axios";
 
 
-
 export type Person = {
     id?: number;
     name: string;
@@ -21,6 +20,7 @@ interface PersonState {
     changeGetMoney: (id: number, getMoney: boolean) => void;
     resetBalance: () => void
     fetchPeoples: () => void
+    fetchAllPeoples: () => void
     fetchBalance: () => void
 
 }
@@ -42,9 +42,11 @@ const usePersonStore = create<PersonState>((set) => ({
         }));
     },
     resetBalance: async () => {await axios.put('api/data')},
-    resetPerson: async () => {
-        await axios.delete('api/data');
-    },
+    fetchAllPeoples: async () => {
+        const res = await axios.get('api/data/filter');
+        const response = await res.data
+        set({peoples:[...response]})
+},
     fetchPeoples: async () => {
         const res = await axios.get('api/data');
         const response = await res.data

@@ -39,8 +39,8 @@ export default function Home() {
             </button>
             <article className={'flex w-full justify-evenly font-bold text-center text-2xl'}>
                 <div>
-                    <p>הוצאות</p>
-                    <p>0</p>
+                    <p>לכל האיסופים</p>
+                    <p className={'text-sm underline'}><Link href={'/history'}>לחץ כאן</Link></p>
                 </div>
 
                 <div>

@@ -14,7 +14,7 @@ export default function History() {
 
     useEffect(() => {
         fetchAllPeoples()
-    }, [!peoples])
+    }, [peoples])
 
     return (
         <section dir={'rtl'} className={'flex items-center flex-col justify-center w-full mt-24 gap-10'}>

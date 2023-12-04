@@ -26,7 +26,7 @@ export default function History() {
                 <input type="text" className={'border-2 border-black w-1/2'} placeholder={'הכנס שם לקוח'}
                        onChange={(e) => setNameData(e.target.value)}/>
             </article>
-            <article>
+            <article className={'w-full'}>
                 {filterList.length > 0 && filterList.map((item) => <div key={item.id} className={'flex w-full' +
                     ' justify-around item-center'}>
                     <p>{item.name}</p>

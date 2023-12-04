@@ -3,18 +3,19 @@
 import {useEffect, useState} from "react";
 import {Person, usePersonStore} from "@/store/store";
 import Link from "next/link";
+import axios from "axios";
 
 
 export default function History() {
 
     const [nameData, setNameData] = useState('');
-    const fetchPeoples = usePersonStore(state => state.fetchPeoples)
+    const fetchAllPeoples = usePersonStore(state => state.fetchAllPeoples)
     const peoples = usePersonStore(state => state.peoples)
     const filterList: Person[] = [...peoples].filter((item) => item.name === nameData)
 
     useEffect(() => {
-        fetchPeoples()
-        console.log(peoples)
+        fetchAllPeoples()
+        console.log(fetchAllPeoples())
     }, [])
 
     return (
@@ -25,22 +26,15 @@ export default function History() {
                 <input type="text" className={'border-2 border-black w-1/2'} placeholder={'הכנס שם לקוח'}
                        onChange={(e) => setNameData(e.target.value)}/>
             </article>
-            {filterList.length > 0 && filterList.map((item) => <div key={item.id} className={'flex w-full' +
-                ' justify-around item-center'}>
-                <p>
-                    {item.name}
+            <article className={'w-full'}>
+                {filterList.length > 0 && filterList.map((item) => <div key={item.id} className={'flex w-full' +
+                    ' justify-around item-center'}>
+                    <p>{item.name}</p>
+                    <p>{item.cash}</p>
+                    <p>{item.created}</p>
+                </div>)}
+            </article>
 
-                </p>
-                <p>
-                    {item.cash}
-
-                </p>
-                <p>
-                    {item.created}
-
-                </p>
-
-            </div>)}
         </section>
     )
 }

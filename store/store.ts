@@ -1,6 +1,5 @@
 import {create} from 'zustand';
 import axios from "axios";
-import {cache} from "browserslist";
 
 
 export type Person = {
@@ -16,6 +15,7 @@ export type Person = {
 
 interface PersonState {
     peoples: Person[]
+    filterPeople: Person[]
     balance: number
     addPerson: (newPerson: Person) => void
     changeGetMoney: (id: number, getMoney: boolean) => void;
@@ -26,11 +26,10 @@ interface PersonState {
 
 }
 
-export const fetchCache = 'force-no-store';
-
 const usePersonStore = create<PersonState>((set) => ({
     peoples: [],
     balance: 0,
+    filterPeople:[],
     addPerson: (newPerson: Person) => {
         set((state) => ({peoples: [...state.peoples, newPerson]}));
     },
@@ -49,8 +48,7 @@ const usePersonStore = create<PersonState>((set) => ({
 
         const res = await fetch('api/data/filter',{cache:'no-store'})
         const response = await res.json()
-        console.log(response)
-        set({peoples:[...response]})
+        set({filterPeople:[...response]})
 },
     fetchPeoples: async () => {
         const res = await axios.get('api/data');

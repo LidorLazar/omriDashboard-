@@ -1,6 +1,10 @@
 import {create} from 'zustand';
 import axios from "axios";
 
+
+export const fetchCache = 'force-no-store';
+
+
 export type Person = {
     id?: number;
     name: string;
@@ -44,7 +48,7 @@ const usePersonStore = create<PersonState>((set) => ({
     },
     resetBalance: async () => {await axios.put('api/data')},
     fetchAllPeoples: async () => {
-        const res = await fetch(`api/data/filter`, { next: { revalidate: 60 } })
+        const res = await fetch('api/data/filter', {cache: 'no-store'})
         const response = await res.json()
         set({filterPeople:[...response]})
 },

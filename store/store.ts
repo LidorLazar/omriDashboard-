@@ -46,12 +46,11 @@ const usePersonStore = create<PersonState>((set) => ({
     },
     resetBalance: async () => {await axios.put('api/data')},
     fetchAllPeoples: async () => {
-        // @ts-ignore
-        const res = await axios.get('api/data/filter', {method:'GET', cache: 'no-store' });
-        const response:any = res.data
+
+        const res = await fetch('api/data/filter',{cache:'no-store'})
+        const response = await res.json()
         console.log(response)
         set({peoples:[...response]})
-
 },
     fetchPeoples: async () => {
         const res = await axios.get('api/data');

@@ -5,7 +5,6 @@ import {Person, usePersonStore} from "@/store/store";
 import Link from "next/link";
 import axios from "axios";
 
-
 export default function History() {
 
     const [nameData, setNameData] = useState('');

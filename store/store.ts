@@ -1,6 +1,8 @@
 import {create} from 'zustand';
 import axios from "axios";
 
+export const dynamic = 'force-static';
+
 
 export type Person = {
     id?: number;
@@ -45,8 +47,7 @@ const usePersonStore = create<PersonState>((set) => ({
     },
     resetBalance: async () => {await axios.put('api/data')},
     fetchAllPeoples: async () => {
-
-        const res = await fetch('api/data/filter',{cache:'no-store'})
+        const res = await fetch('api/data/filter',{cache:'no-cache', method:'GET'})
         const response = await res.json()
         set({filterPeople:[...response]})
 },

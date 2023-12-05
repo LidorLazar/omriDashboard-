@@ -15,7 +15,6 @@ export default function History() {
 
     useEffect(() => {
         fetchAllPeoples()
-        console.log(fetchAllPeoples())
     }, [])
 
     return (

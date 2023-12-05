@@ -10,12 +10,14 @@ export default function History() {
 
     const [nameData, setNameData] = useState('');
     const fetchAllPeoples = usePersonStore(state => state.fetchAllPeoples)
-    const peoples = usePersonStore(state => state.peoples)
-    const filterList: Person[] = [...peoples].filter((item) => item.name === nameData)
+    const filterPeople = usePersonStore(state => state.filterPeople)
+    const filterList: Person[] = [...filterPeople].filter((item) => item.name === nameData)
 
     useEffect(() => {
         fetchAllPeoples()
-    }, [])
+        console.log(filterPeople)
+    }, [nameData])
+
 
     return (
         <section dir={'rtl'} className={'flex items-center flex-col justify-center w-full mt-24 gap-10'}>

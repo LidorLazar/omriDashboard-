@@ -3,7 +3,6 @@
 import {useEffect, useState} from "react";
 import {Person, usePersonStore} from "@/store/store";
 import Link from "next/link";
-import axios from "axios";
 
 export default function History() {
 
@@ -14,7 +13,7 @@ export default function History() {
 
     useEffect(() => {
         fetchAllPeoples()
-        console.log(filterPeople)
+
     }, [nameData])
 
 

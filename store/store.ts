@@ -44,8 +44,8 @@ const usePersonStore = create<PersonState>((set) => ({
     },
     resetBalance: async () => {await axios.put('api/data')},
     fetchAllPeoples: async () => {
-        const res = await axios.get('api/data/filter',{headers: { 'Cache-Control': 'no-cache'}})
-        const response = await res.data
+        const res = await fetch(`api/data/filter`, { next: { revalidate: 60 } })
+        const response = await res.json()
         set({filterPeople:[...response]})
 },
     fetchPeoples: async () => {
